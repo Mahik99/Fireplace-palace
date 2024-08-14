@@ -1,13 +1,10 @@
-import React from "react";
-import styles from "./header.module.css";
-
-function Header() {
+import styles from './Header.module.css'
+const Header = () => {
   return (
-      <header className={styles.header}>
-        <h1 className={styles.heading}>🔥 Fireplace Palace</h1>
-      </header>
+    <header className={styles.headerContainer}>
+      <h1 className={styles.title}>🔥 Fireplace Palace</h1>
+    </header>
   );
-}
+};
 
 export default Header;
-

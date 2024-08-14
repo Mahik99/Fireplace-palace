@@ -1,7 +1,13 @@
-.header {
-  background: white;
-}
+.headerContainer {
+    padding-left: 10px;
+    font-size: 16px;
+  }
 
-.heading {
-  font-size: 32px;
-}
+  .title{
+    margin: 0;
+  }
+  @media (min-width: 1024px) {
+    .headerContainer {
+      width: 70%;
+    }
+  }
