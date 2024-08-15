@@ -21,5 +21,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-// Inlcude Wrapper, footer too.
