@@ -1,19 +1,23 @@
 .headerContainer {
-    padding-left: 10px;
-    font-size: 16px;
-    display: flex;
-  }
+  padding-left: 10px;
+  font-size: 16px;
+  display: flex;
+}
 
-  .title{
-    margin: 0;
-    display: inline;
-  }
-  @media (min-width: 1024px) {
-    .headerContainer {
-      width: 70%;
-    }
-  }
+.title {
+  margin: 0;
+}
 
-  .button {
-    text-align: right;
+.div {
+  background-color: orange;
+  height: 80vh;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+}
+
+@media (min-width: 1024px) {
+  .headerContainer {
+    width: 70%;
   }
+}
