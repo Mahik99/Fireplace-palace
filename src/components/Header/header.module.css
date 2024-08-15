@@ -1,13 +1,19 @@
 .headerContainer {
     padding-left: 10px;
     font-size: 16px;
+    display: flex;
   }
 
   .title{
     margin: 0;
+    display: inline;
   }
   @media (min-width: 1024px) {
     .headerContainer {
       width: 70%;
     }
+  }
+
+  .button {
+    text-align: right;
   }
