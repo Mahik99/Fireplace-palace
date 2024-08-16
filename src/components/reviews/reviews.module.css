@@ -1,0 +1,18 @@
+.reviewsContainer {
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.reviewButtons {
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+}
