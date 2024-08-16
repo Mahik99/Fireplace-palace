@@ -16,3 +16,8 @@
     font-size: 16px;
     padding: 10px;
 }
+
+.reviewButtons:hover {
+    background-color: orange;
+    cursor: pointer;
+}
