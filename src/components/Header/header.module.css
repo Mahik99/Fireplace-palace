@@ -1,11 +1,23 @@
 .headerContainer {
-  /* flex-wrap: wrap; */
+  padding-left: 10px;
+  font-size: 16px;
+  display: flex;
 }
 
-
-.menuButton {
-  position: fixed;
-  top: 10px; 
-  right: 10px; 
+.title {
+  margin: 0;
 }
 
+.div {
+  background-color: orange;
+  height: 80vh;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+}
+
+@media (min-width: 1024px) {
+  .headerContainer {
+    width: 70%;
+  }
+}
