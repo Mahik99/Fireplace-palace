@@ -1,23 +1,40 @@
 .reviewsContainer {
-    text-align: center;
+  text-align: center;
 }
 
 .buttonContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .reviewButtons {
-    background-color: grey;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    padding: 10px;
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px;
 }
 
 .reviewButtons:hover {
-    background-color: orange;
-    cursor: pointer;
+  background-color: orange;
+  cursor: pointer;
+}
+
+/* div for review section */
+.reviewInfo {
+  width: 90%;
+}
+
+.reviewText {
+  background-color: lightgray;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* author and location */
+.reviewDetails {
+  text-align: right;
+  text-decoration: underline;
 }
