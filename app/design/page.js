@@ -12,6 +12,7 @@ const [address, setAddress] = useState("")
 const [city, setCity] = useState("")
 const [phone, setPhone] = useState("")
 const [email, setEmail] = useState("")
+const [error, setError] = useState(false)
 
 const handleChange = (event) => {
   if (event.target.name === "user_name") {
@@ -48,7 +49,23 @@ const handleChange = (event) => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    console.log({ fullName, postcode, address, city, phone, email});
+
+    if (fullName === "" ||
+      postcode === "" ||
+      address === "" ||
+      city === "" ||
+      phone === "" ||
+      email === ""
+    ) {
+      setError(true)
+    } else {
+
+    setError(false)
+    console.log({ fullName, postcode, address, city, phone, email}); 
+
+    }
+
+
   }
 
 
@@ -147,6 +164,7 @@ const handleChange = (event) => {
             </li>
           </ul>
         </fieldset>
+        {error && <p className={styles.errorMessage}>Error - all fields are required - some missing</p> }
         <button type="submit" className={styles.consultationButton}>
           Request Design consultation
         </button>
