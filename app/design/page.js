@@ -41,8 +41,15 @@ const handleChange = (event) => {
 
   console.log(event.target.value)
 
+  return (event.target.value)
+
 }
 
+
+  const submitForm = (event) => {
+    event.preventDefault();
+    console.log({ fullName, postcode, address, city, phone, email});
+  }
 
 
 
@@ -51,7 +58,7 @@ const handleChange = (event) => {
   return (
     <>
       <h1 className={styles.formTiltle}>Design Booking</h1>
-      <form>
+      <form onSubmit={submitForm}>
         <fieldset className={styles.fieldset}>
           <legend className={styles.formLegend}>Personal Information:</legend>
           <ul className={styles.ul}>
