@@ -82,7 +82,7 @@ export default function ContactForm() {
             </li>
           </ul>
         </fieldset>
-        <button className={styles.consultationButton}>
+        <button type="submit" className={styles.consultationButton}>
           Request Design consultation
         </button>
       </form>
