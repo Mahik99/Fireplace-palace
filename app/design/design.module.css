@@ -1,0 +1,42 @@
+.formTiltle {
+  background-color: orange;
+  padding: 20px;
+}
+
+.fieldset {
+  border: none;
+}
+
+.formLegend {
+  font-size: 20px;
+}
+
+.ul {
+  list-style: none;
+  background-color: rgb(228, 226, 226);
+  padding: 10px;
+  padding-bottom: 25px;
+}
+
+.inputBox {
+  width: 90%;
+  height: 30px;
+  margin-top: 15px;
+}
+
+.formLabel {
+  display: block;
+  margin-top: 20px;
+  height: 20px;
+}
+
+.consultationButton {
+  background-color: orange;
+  border: none;
+  font-size: 18px;
+  text-align: center;
+  width: 95%;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 55px;
+}
