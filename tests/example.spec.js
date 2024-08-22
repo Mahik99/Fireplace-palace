@@ -22,3 +22,17 @@ test("has title", async ({ page }) => {
   await page.goto("http://localhost:3000");
   await expect(page).toHaveTitle("Fireplace Palace");
 });
+
+test("Bookings test", async ({ page }) => {
+  await page.goto("http://localhost:3000");
+
+  // Click the Request a design consultation
+  await page
+    .getByRole("link", { name: "Request a design consultation" })
+    .click();
+
+  // Expects page to have a heading with the name of Installation.
+  await expect(
+    page.getByRole("heading", { name: "Installation" })
+  ).toBeVisible();
+});

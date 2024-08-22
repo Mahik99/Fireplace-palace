@@ -1,5 +1,5 @@
 "use client";
-
+import Head from "next/head";
 import { useReducer, useState } from "react";
 import Link from "next/link";
 import styles from "./design.module.css";
@@ -8,30 +8,30 @@ function reducer(state, action) {
   switch (action.type) {
     case "CHANGE_FIELD":
       return {
-              ...state, // spreads state (so we have both data and status)
-          data: {
-              ...state.data, // spreads state data
-              [action.payload.fieldName]: action.payload.fieldValue // only changes user input field
-          }
-        }
+        ...state, // spreads state (so we have both data and status)
+        data: {
+          ...state.data, // spreads state data
+          [action.payload.fieldName]: action.payload.fieldValue, // only changes user input field
+        },
+      };
 
-      case "ERROR":
-        return {
-          ...state,
-          status: "error" 
-        }
+    case "ERROR":
+      return {
+        ...state,
+        status: "error",
+      };
 
-        case "FORM_SUBMITTING":
-          return {
-            ...state,
-             status: "submitting"
-          }
+    case "FORM_SUBMITTING":
+      return {
+        ...state,
+        status: "submitting",
+      };
 
-          case "FORM_SUCCESS":
-            return {
-              ...state,
-              status: "success"
-            }
+    case "FORM_SUCCESS":
+      return {
+        ...state,
+        status: "success",
+      };
 
     default:
       return state;
@@ -55,12 +55,11 @@ const initialState = {
     city: "",
     phone: "",
     email: "",
-  }
+  },
 };
 
 export default function ContactForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
 
   const handleChange = (event) => {
     if (
@@ -77,27 +76,19 @@ export default function ContactForm() {
           fieldName: event.target.name,
           fieldValue: event.target.value,
         },
-      })
-      
+      });
     }
-    console.log(`${event.target.name}: ${event.target.value}` );
-
+    console.log(`${event.target.name}: ${event.target.value}`);
   };
 
   const submitForm = (event) => {
     event.preventDefault();
 
-
     dispatch({
-      type: "FORM_SUBMITTING"
+      type: "FORM_SUBMITTING",
     });
 
-
-
     setTimeout(() => {
-
- 
-
       if (
         state.data.name === "" ||
         state.data.postcode === "" ||
@@ -106,25 +97,22 @@ export default function ContactForm() {
         state.data.phone === "" ||
         state.data.email === ""
       ) {
-        dispatch({type: "ERROR"})
+        dispatch({ type: "ERROR" });
       } else {
-      
-      dispatch({
-          type: "FORM_SUCCESS"
-      });
-
-    }
-
-  }, 2000);
-
-    
+        dispatch({
+          type: "FORM_SUCCESS",
+        });
+      }
+    }, 2000);
 
     console.log(state);
-
   };
 
   return (
     <>
+      <Head>
+        <title>Bookings</title>
+      </Head>
       <h1 className={styles.formTiltle}>Design Booking</h1>
       <form onSubmit={submitForm}>
         <fieldset className={styles.fieldset}>
@@ -221,11 +209,11 @@ export default function ContactForm() {
             Error - all fields are required - some missing
           </p>
         )}
-        
+
         <button type="submit" className={styles.consultationButton}>
-        {state.status === "editing" && <p>Request Design consultation</p>}
-        {state.status === "submitting" && <p>Submitting...</p>}
-        {state.status === "success" && <p>Submitted successfully!</p>}
+          {state.status === "editing" && <p>Request Design consultation</p>}
+          {state.status === "submitting" && <p>Submitting...</p>}
+          {state.status === "success" && <p>Submitted successfully!</p>}
         </button>
       </form>
     </>
