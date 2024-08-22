@@ -18,7 +18,7 @@ function reducer(state, action) {
       case "ERROR":
         return {
           ...state,
-          status: "error"
+          status: "error" 
         }
 
         case "FORM_SUBMITTING":
@@ -48,6 +48,14 @@ const initialState = {
     email: "",
   },
   status: "editing",
+  errors: {
+    name: "",
+    postcode: "",
+    address: "",
+    city: "",
+    phone: "",
+    email: "",
+  }
 };
 
 export default function ContactForm() {
@@ -84,9 +92,11 @@ export default function ContactForm() {
       type: "FORM_SUBMITTING"
     });
 
+
+
     setTimeout(() => {
 
-    
+ 
 
       if (
         state.data.name === "" ||
@@ -105,7 +115,7 @@ export default function ContactForm() {
 
     }
 
-  }, 5000);
+  }, 2000);
 
     
 
@@ -132,6 +142,7 @@ export default function ContactForm() {
                 onChange={(event) => handleChange(event)}
                 value={state.data.name}
               />
+              {state.errors.name === true && <p>Please enter name.</p>}
             </li>
             <li className={styles.formList}>
               <label className={styles.formLabel} htmlFor="postcode">
@@ -210,8 +221,11 @@ export default function ContactForm() {
             Error - all fields are required - some missing
           </p>
         )}
+        
         <button type="submit" className={styles.consultationButton}>
-          Request Design consultation
+        {state.status === "editing" && <p>Request Design consultation</p>}
+        {state.status === "submitting" && <p>Submitting...</p>}
+        {state.status === "success" && <p>Submitted successfully!</p>}
         </button>
       </form>
     </>
