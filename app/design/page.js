@@ -8,12 +8,31 @@ function reducer(state, action) {
   switch (action.type) {
     case "CHANGE_FIELD":
       return {
-        data: {
-          ...state.data,
-          [action.payload.fieldName]: action.payload.fieldValue,
-        },
-        error: state.error,
-      };
+              ...state, // spreads state (so we have both data and status)
+          data: {
+              ...state.data, // spreads state data
+              [action.payload.fieldName]: action.payload.fieldValue // only changes user input field
+          }
+        }
+
+      case "ERROR":
+        return {
+          ...state,
+          status: "error"
+        }
+
+        case "FORM_SUBMITTING":
+          return {
+            ...state,
+             status: "submitting"
+          }
+
+          case "FORM_SUCCESS":
+            return {
+              ...state,
+              status: "success"
+            }
+
     default:
       return state;
   }
@@ -21,34 +40,28 @@ function reducer(state, action) {
 
 const initialState = {
   data: {
-    fullName: "",
-    user_postcode: "",
-    user_address: "",
-    user_city: "",
-    user_phone_number: "",
-    user_email: "",
+    name: "",
+    postcode: "",
+    address: "",
+    city: "",
+    phone: "",
+    email: "",
   },
-  error: false,
+  status: "editing",
 };
 
 export default function ContactForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [fullName, setFullName] = useState("");
-  const [postcode, setPostcode] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState(false);
+
 
   const handleChange = (event) => {
     if (
-      event.target.name === "fullName" ||
-      event.target.name === "user_postcode" ||
-      event.target.name === "user_address" ||
-      event.target.name === "user_city" ||
-      event.target.name === "user_phone_number" ||
-      event.target.name === "user_email"
+      event.target.name === "name" ||
+      event.target.name === "postcode" ||
+      event.target.name === "address" ||
+      event.target.name === "city" ||
+      event.target.name === "phone" ||
+      event.target.name === "email"
     ) {
       dispatch({
         type: "CHANGE_FIELD",
@@ -56,27 +69,48 @@ export default function ContactForm() {
           fieldName: event.target.name,
           fieldValue: event.target.value,
         },
-      });
+      })
+      
     }
+    console.log(`${event.target.name}: ${event.target.value}` );
+
   };
-  console.log(state);
 
   const submitForm = (event) => {
     event.preventDefault();
 
-    if (
-      fullName === "" ||
-      postcode === "" ||
-      address === "" ||
-      city === "" ||
-      phone === "" ||
-      email === ""
-    ) {
-      setError(true);
-    } else {
-      setError(false);
-      console.log({ fullName, postcode, address, city, phone, email });
+
+    dispatch({
+      type: "FORM_SUBMITTING"
+    });
+
+    setTimeout(() => {
+
+    
+
+      if (
+        state.data.name === "" ||
+        state.data.postcode === "" ||
+        state.data.address === "" ||
+        state.data.city === "" ||
+        state.data.phone === "" ||
+        state.data.email === ""
+      ) {
+        dispatch({type: "ERROR"})
+      } else {
+      
+      dispatch({
+          type: "FORM_SUCCESS"
+      });
+
     }
+
+  }, 5000);
+
+    
+
+    console.log(state);
+
   };
 
   return (
@@ -94,9 +128,9 @@ export default function ContactForm() {
                 className={styles.inputBox}
                 type="text"
                 id="name"
-                name="fullName"
+                name="name"
                 onChange={(event) => handleChange(event)}
-                value={state.data.fullName}
+                value={state.data.name}
               />
             </li>
             <li className={styles.formList}>
@@ -107,7 +141,7 @@ export default function ContactForm() {
                 className={styles.inputBox}
                 type="text"
                 id="postcode"
-                name="user_postcode"
+                name="postcode"
                 onChange={(event) => handleChange(event)}
                 value={state.data.postcode}
               />
@@ -120,7 +154,7 @@ export default function ContactForm() {
                 className={styles.inputBox}
                 type="text"
                 id="address"
-                name="user_address"
+                name="address"
                 onChange={(event) => handleChange(event)}
                 value={state.data.address}
               />
@@ -133,7 +167,7 @@ export default function ContactForm() {
                 className={styles.inputBox}
                 type="text"
                 id="city"
-                name="user_city"
+                name="city"
                 onChange={(event) => handleChange(event)}
                 value={state.data.city}
               />
@@ -151,7 +185,7 @@ export default function ContactForm() {
                 className={styles.inputBox}
                 type="tel"
                 id="phone_number"
-                name="user_phone_number"
+                name="phone"
                 onChange={(event) => handleChange(event)}
                 value={state.data.phone}
               />
@@ -164,14 +198,14 @@ export default function ContactForm() {
                 className={styles.inputBox}
                 type="email"
                 id="mail"
-                name="user_email"
+                name="email"
                 onChange={(event) => handleChange(event)}
                 value={state.data.email}
               />
             </li>
           </ul>
         </fieldset>
-        {error && (
+        {state.status === "error" && (
           <p className={styles.errorMessage}>
             Error - all fields are required - some missing
           </p>
