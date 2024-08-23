@@ -27,11 +27,11 @@ test("Bookings test", async ({ page }) => {
 test("form input", async ({ page }) => {
   await page.goto("http://localhost:3000/design");
 
-  await page.getByLabel('city').fill('london');
-
-  await page.getByLabel('postcode').fill('');
-
-  await expect(page.locator('p:has-text("Please enter postcode.")')).toBeVisible();
-
-
-})
+  await page.getByLabel("city").fill("london");
+  // Checking if error message is displayed when input is blank, clicking out of the input to display the error message.
+  await page.getByLabel("postcode").fill("");
+  await page.getByLabel("city").click();
+  await expect(
+    page.locator('p:has-text("Please enter postcode.")')
+  ).toBeVisible();
+});
