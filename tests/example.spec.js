@@ -1,28 +1,13 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 
-// test('has title', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
-
-//   // Expect a title "to contain" a substring.
-//   await expect(page).toHaveTitle(/Playwright/);
-// });
-
-// test('get started link', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
-
-//   // Click the get started link.
-//   await page.getByRole('link', { name: 'Get started' }).click();
-
-//   // Expects page to have a heading with the name of Installation.
-//   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-// });
-
+// 1st test
 test("has title", async ({ page }) => {
   await page.goto("http://localhost:3000");
   await expect(page).toHaveTitle("Fireplace Palace");
 });
 
+// 2nd test
 test("Bookings test", async ({ page }) => {
   await page.goto("http://localhost:3000");
 
@@ -31,8 +16,22 @@ test("Bookings test", async ({ page }) => {
     .getByRole("link", { name: "Request a design consultation" })
     .click();
 
-  // Expects page to have a heading with the name of Installation.
+  // Expects page to have a heading with the name of Design Booking.
   await expect(
-    page.getByRole("heading", { name: "Installation" })
+    page.getByRole("heading", { name: "Design Booking" })
   ).toBeVisible();
 });
+
+//3rd test
+
+test("form input", async ({ page }) => {
+  await page.goto("http://localhost:3000/design");
+
+  await page.getByLabel('city').fill('london');
+
+  await page.getByLabel('postcode').fill('');
+
+  await expect(page.locator('p:has-text("Please enter postcode.")')).toBeVisible();
+
+
+})

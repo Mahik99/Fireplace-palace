@@ -6,6 +6,7 @@
 
 .fieldset {
   border: none;
+  width: 100%;
 }
 
 .formLegend {
@@ -36,10 +37,18 @@
   border: none;
   font-size: 18px;
   text-align: center;
-  width: 95%;
+  width: 100%;
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 55px;
+  /* font-weight: ; */
+}
+
+
+
+.consultationButton:hover {
+  background-color: rgb(255, 153, 0);
+  cursor: pointer;
 }
 
 
@@ -48,4 +57,23 @@
   text-align: center;
   color: red;
 
+}
+
+.thankYouPage{
+  background-color: orange;
+  text-align: center;
+  padding: 300px 0px;
+}
+
+
+.fieldError {
+  color: red;
+}
+
+.form {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center;    /* Center items horizontally */
+  padding-left: 3%;
+  padding-right: 3%;
 }
