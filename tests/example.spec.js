@@ -36,12 +36,12 @@ test("form input", async ({ page }) => {
   ).toBeVisible();
 });
 
-
 //4th test
 
-test("submit button", async ({ page}) => {
+test("submit button", async ({ page }) => {
   await page.goto("http://localhost:3000/design");
 
+  // ensure all fields are filled in
   await page.getByLabel("Full Name").fill("Ben");
   await page.getByLabel("Postcode").fill("123456");
   await page.getByLabel("House/ Flat Number And Street Name").fill("654321");
@@ -49,5 +49,14 @@ test("submit button", async ({ page}) => {
   await page.getByLabel("Phone Number").fill("123456789");
   await page.getByLabel("Email").fill("Ben@mail.com");
 
-  await page.getByRole("button", { name: "Request design consultation" }).click();
-})
+  // click submit button
+  await page
+    .getByRole("button", { name: "Request design consultation" })
+    .click();
+
+  // delay timeout so submit success screen is shown
+  await page.waitForTimeout(3000);
+
+  // check heading is thank you
+  await expect(page.getByRole("heading", { name: "Thank you" })).toBeVisible();
+});
