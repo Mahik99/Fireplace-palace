@@ -35,3 +35,19 @@ test("form input", async ({ page }) => {
     page.locator('p:has-text("Please enter postcode.")')
   ).toBeVisible();
 });
+
+
+//4th test
+
+test("submit button", async ({ page}) => {
+  await page.goto("http://localhost:3000/design");
+
+  await page.getByLabel("Full Name").fill("Ben");
+  await page.getByLabel("Postcode").fill("123456");
+  await page.getByLabel("House/ Flat Number And Street Name").fill("654321");
+  await page.getByLabel("City").fill("london");
+  await page.getByLabel("Phone Number").fill("123456789");
+  await page.getByLabel("Email").fill("Ben@mail.com");
+
+  await page.getByRole("button", { name: "Request design consultation" }).click();
+})
